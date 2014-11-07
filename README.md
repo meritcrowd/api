@@ -1,5 +1,4 @@
 ## MeritCrowd API Documentation
-===
 ### Examples
 ```php
 include('MeritCrowdApi.php');
