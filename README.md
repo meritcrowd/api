@@ -1,6 +1,6 @@
-MeritCrowd API Documentation
+## MeritCrowd API Documentation
 ===
-Examples
+### Examples
 ```php
 include('MeritCrowdApi.php');
 
