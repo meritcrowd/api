@@ -51,13 +51,11 @@ class MeritCrowdApi
 
 		nonce = getNonce()
 		digest = OpenSSL::Digest.new('sha256')
-
 		apiData = {
 			"apiKey" => @apiKey,
 			"nonce" => nonce,
 			"hmac" => OpenSSL::HMAC.hexdigest(digest, @apiSecret, nonce)
 		}
-
 		response = makeRequest(url, apiData.merge(data))
 
 		return response
