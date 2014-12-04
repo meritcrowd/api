@@ -59,21 +59,23 @@ class MeritCrowdApi {
 		return $response->nonce;
 	}
 
-	private function api($url, $data = array()) {
+	private function api($url, $request = array()) {
 
 		$nonce = $this->getNonce();
 
-		$response = $this->makeRequest($url, array_merge(array(
+		$json = json_encode($request);
+		$response = $this->makeRequest($url, array(
 			'apiKey' => $this->apiKey,
 			'nonce' => $nonce,
-			'hmac' => hash_hmac('sha256', $nonce, $this->apiSecret)
-		), $data));
+			'hmac' => hash_hmac('sha256', $nonce.$json, $this->apiSecret),
+			'request' => $json
+		));
 
 		return $response;
 	}
 
-	public function getOrders() {
-		return $this->api($this->endPoint.'getOrders');
+	public function getJobs() {
+		return $this->api($this->endPoint.'getJobs');
 	}
 
 	public function getTasks($jobId) {

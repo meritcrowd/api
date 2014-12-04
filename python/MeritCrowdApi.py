@@ -45,23 +45,25 @@ class MeritCrowdApi:
 		response = self.makeRequest(self.endPoint+'getNonce', {'apiKey': self.apiKey})
 		return response['nonce']
 
-	def api(self, url, data):
+	def api(self, url, request):
 
 		nonce = self.getNonce()
+		request = json.dumps(request)
 
-		digest = hmac.new(self.apiSecret, nonce, hashlib.sha256).hexdigest()
+		digest = hmac.new(self.apiSecret, nonce+request, hashlib.sha256).hexdigest()
 
 		apiData = {
 			'apiKey': self.apiKey,
 			'nonce': nonce,
-			'hmac': digest
+			'hmac': digest,
+			'request': request
 		}
-		response = self.makeRequest(url, dict(apiData.items() + data.items()))
+		response = self.makeRequest(url, apiData)
 
 		return response
 
-	def getOrders(self):
-		return self.api(self.endPoint+'getOrders', {})
+	def getJobs(self):
+		return self.api(self.endPoint+'getJobs', {})
 
 	def getTasks(self, jobId):
 		return self.api(self.endPoint+'getTasks', {'jobId': jobId})

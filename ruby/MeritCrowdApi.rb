@@ -47,22 +47,24 @@ class MeritCrowdApi
 		return response['nonce']
 	end
 
-	def api(url, data)
+	def api(url, request)
 
 		nonce = getNonce()
+		request = JSON.generate(request)
 		digest = OpenSSL::Digest.new('sha256')
 		apiData = {
 			"apiKey" => @apiKey,
 			"nonce" => nonce,
-			"hmac" => OpenSSL::HMAC.hexdigest(digest, @apiSecret, nonce)
+			"hmac" => OpenSSL::HMAC.hexdigest(digest, @apiSecret, nonce+request),
+			"request" => request
 		}
-		response = makeRequest(url, apiData.merge(data))
+		response = makeRequest(url, apiData)
 
 		return response
 	end
 
-	def getOrders()
-		return api(@endPoint+"getOrders", {})
+	def getJobs()
+		return api(@endPoint+"getJobs", {})
 	end
 
 	def getTasks(jobId)
