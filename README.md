@@ -16,9 +16,9 @@ $jobs = $api->getJobs();
 $tasks = $api->getTasks(350);
 
 $api->addTask(350, array(
-	'keywords' => 'Keyword1, Keyword2',
-	'anchorText' => 'Anchor Text',
-	'anchorUrl': 'http://example.com',
+	'Keywords' => 'Keyword1, Keyword2',
+	'Link Text' => 'Anchor Text',
+	'Link URL' => 'http://example.com',
 	'_myCustomId' => 42
 ));
 
@@ -39,9 +39,9 @@ jobs = api.getJobs()
 tasks = api.getTasks(350)
 
 api.addTask(350, {
-	'keywords': 'Keyword1, Keyword2',
-	'anchorText': 'Anchor Text',
-	'anchorUrl': 'http://example.com',
+	'Keywords': 'Keyword1, Keyword2',
+	'Link Text': 'Anchor Text',
+	'Link URL': 'http://example.com',
 	'_myCustomId': 42
 })
 ```
@@ -60,9 +60,9 @@ jobs = api.getJobs()
 tasks = api.getTasks(350)
 
 api.addTask(350, {
-	'keywords' => 'Keyword1, Keyword2',
-	'anchorText' => 'Anchor Text',
-	'anchorUrl' => 'http://example.com',
+	'Keywords' => 'Keyword1, Keyword2',
+	'Link Text' => 'Anchor Text',
+	'Link URL' => 'http://example.com',
 	'_myCustomId' => 42
 })
 ```

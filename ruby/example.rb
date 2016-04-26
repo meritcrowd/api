@@ -2,9 +2,9 @@
 require 'MeritCrowdApi'
 
 api = MeritCrowdApi.new(
-	"341094006588",
-	"e042b47f3e88ef10e7c76f1c9d8842403669e927dab4cd0757572b229330674f",
-	"http://www.boostcontent.com/api/"
+	"3845772082",
+	"48bae4986d8db3b16713c81b386462564583b4efb71be24a7dddf4ac535fdb3c",
+	"https://www.boostcontent.com/api/"
 )
 
 jobs = api.getJobs()
