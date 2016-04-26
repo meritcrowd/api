@@ -84,10 +84,40 @@ class MeritCrowdApi {
 		));
 	}
 
+	public function getTask($taskId) {
+		return $this->api($this->endPoint.'getTask', array(
+			'taskId' => $taskId
+		));
+	}
+
 	public function addTask($jobId, $parameters) {
 		return $this->api($this->endPoint.'addTask', array(
 			'jobId' => $jobId,
 			'parameters' => json_encode($parameters)
+		));
+	}
+
+	public function getFunds() {
+		return $this->api($this->endPoint.'getFunds');
+	}
+
+	public function getWebhook($action) {
+		return $this->api($this->endPoint.'getWebhook', [
+			'action' => $action
+		]);
+	}
+
+	public function setWebhook($action, $url) {
+		return $this->api($this->endPoint.'setWebhook', [
+			'action' => $action,
+			'url' => $url
+		]);
+	}
+
+	public function setJobStatus($jobId, $status) {
+		return $this->api($this->endPoint.'setJobStatus', array(
+			'jobId' => $jobId,
+			'status' => $status
 		));
 	}
 }

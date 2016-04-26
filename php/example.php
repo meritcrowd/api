@@ -3,19 +3,28 @@
 include('MeritCrowdApi.php');
 
 $api = new MeritCrowdApi(
-	"3845772082",
-	"48bae4986d8db3b16713c81b386462564583b4efb71be24a7dddf4ac535fdb3c",
-	"https://www.boostcontent.com/api/"
+	"3762386312",
+	"a5000c28141f71f2d2e19c6d6f9562a6ac85e55f8fd5f126b74d4f888c12f606",
+	"http://dev.boostcontent.com/api/"
 );
 
-$jobs = $api->getJobs();
-$tasks = $api->getTasks(350);
+// Example with subject.
+//$api->addTask(562, [
+//	'subject' => 'Lånebilar i Malmö'
+//]);
 
-$api->addTask(350, array(
-	'keywords' => 'Keyword1, Keyword2',
-	'anchorText' => 'Anchor Text',
-	'anchorUrl': 'http://example.com',
-	'_myCustomId' => 42
-));
+//$api->setJobStatus(1646, 'active');
+
+$api->setWebhook('taskFinished', 'http://dev.boostcontent.com/testarlite');
+
+die;
+
+// Example with keywords and anchor texts.
+
+/*$api->addTask(JOB_ID, [
+	'keywords' => 'Markduk i Östersund',
+	'anchorText' => 'Markdukar',
+	'anchorUrl' => 'http://www.markdukar.se'
+]);*/
 
 ?>
