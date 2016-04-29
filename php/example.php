@@ -3,19 +3,31 @@
 include('MeritCrowdApi.php');
 
 $api = new MeritCrowdApi(
-	"3845772082",
-	"48bae4986d8db3b16713c81b386462564583b4efb71be24a7dddf4ac535fdb3c",
-	"https://www.boostcontent.com/api/"
+	"API_KEY",
+	"API_SECRET",
+	"http://preview.dev.boostcontent.com/api/"
 );
 
 $jobs = $api->getJobs();
+$jobTemplates = $api->getJobTemplates();
 $tasks = $api->getTasks($jobs[0]->jobId);
+$languages = $api->getRealms();
 
-$api->addTask($jobs[0]->jobId, array(
-	'Keywords' => 'Keyword1, Keyword2',
-	'Link Text' => 'Anchor Text',
-	'Link URL' => 'http://example.com',
-	'_myCustomId' => 42
-));
+$template = $jobTemplates[0];
+$language = $languages[0];
+
+$jobId = $api->createNewJob('Josefs testjobb', $template->jobTemplateId, 300, $language->realmId,
+	$language->teamId);
+
+$job = $api->getJob($jobId);
+
+$api->addTask($job->jobId, [
+	'Subject' => 'Detta är subject 1'
+]);
+$api->addTask($job->jobId, [
+	'Subject' => 'Detta är subject 2'
+]);
+
+$api->enableNewJob($job->jobId);
 
 ?>

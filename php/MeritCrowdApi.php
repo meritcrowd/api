@@ -9,6 +9,9 @@ class MeritCrowdApi {
 	const errorInvalidHmac = 4;
 	const errorInvalidId = 5;
 	const errorInsufficientFunds = 6;
+	const errorInvalidParameter = 7;
+	const errorDeprecated = 8;
+	const errorMissing = 9;
 
 	private $endPoint;
 	private $apiKey;
@@ -74,8 +77,18 @@ class MeritCrowdApi {
 		return $response;
 	}
 
+	public function getJobTemplates() {
+		return $this->api($this->endPoint . 'getJobTemplates');
+	}
+
 	public function getJobs() {
-		return $this->api($this->endPoint.'getJobs');
+		return $this->api($this->endPoint . 'getJobs');
+	}
+
+	public function getJob($jobId) {
+		return $this->api($this->endPoint . 'getJob', [
+			'jobId' => $jobId
+		]);
 	}
 
 	public function getTasks($jobId) {
@@ -97,8 +110,24 @@ class MeritCrowdApi {
 		));
 	}
 
+	public function createNewJob($jobName, $jobTemplateId, $minWordCount, $realmId, $teamId) {
+		return $this->api($this->endPoint . 'createJob', [
+			'jobName' => $jobName,
+			'jobTemplateId' => $jobTemplateId,
+			'minWordCount' => $minWordCount,
+			'realmId' => $realmId,
+			'teamId' => $teamId
+		]);
+	}
+
 	public function getFunds() {
 		return $this->api($this->endPoint.'getFunds');
+	}
+
+	public function getRealms($realmType = 'language') {
+		return $this->api($this->endPoint . 'getRealms', [
+			'realmType' => $realmType
+		]);
 	}
 
 	public function getWebhook($action) {
@@ -119,6 +148,12 @@ class MeritCrowdApi {
 			'jobId' => $jobId,
 			'status' => $status
 		));
+	}
+
+	public function enableNewJob($jobId) {
+		return $this->api($this->endPoint . 'enableNewJob', [
+			'jobId' => $jobId
+		]);
 	}
 }
 
