@@ -3,8 +3,8 @@
 include('MeritCrowdApi.php');
 
 $api = new MeritCrowdApi(
-	"API_KEY",
-	"API_SECRET",
+	"__API_KEY__",
+	"__API_SECRET__",
 	"http://preview.dev.boostcontent.com/api/"
 );
 
@@ -16,8 +16,8 @@ $languages = $api->getRealms();
 $template = $jobTemplates[0];
 $language = $languages[0];
 
-$jobId = $api->createNewJob('Josefs testjobb', $template->jobTemplateId, 300, $language->realmId,
-	$language->teamId);
+$jobId = $api->createNewJob('Josefs testjobb', $template->jobTemplateId, 600, $language->realmId,
+	$language->teamId, 1);
 
 $job = $api->getJob($jobId);
 

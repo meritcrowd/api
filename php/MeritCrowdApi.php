@@ -110,13 +110,14 @@ class MeritCrowdApi {
 		));
 	}
 
-	public function createNewJob($jobName, $jobTemplateId, $minWordCount, $realmId, $teamId) {
+	public function createNewJob($jobName, $jobTemplateId, $minWordCount, $realmId, $teamId, $groupedTaskJob = 0) {
 		return $this->api($this->endPoint . 'createJob', [
 			'jobName' => $jobName,
 			'jobTemplateId' => $jobTemplateId,
-			'minWordCount' => $minWordCount,
+			'wordCountMin' => $minWordCount,
 			'realmId' => $realmId,
-			'teamId' => $teamId
+			'teamId' => $teamId,
+			'groupedTaskJob' => $groupedTaskJob
 		]);
 	}
 
